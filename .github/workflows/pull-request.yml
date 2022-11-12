@@ -1,0 +1,7 @@
+name: pull-request
+on:
+  pull_request:
+    types: [opened, synchronize]
+jobs:
+  code:
+    uses: mocktomata/.github/.github/workflows/pnpm-verify-linux.yml@main

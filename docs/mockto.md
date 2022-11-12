@@ -39,7 +39,6 @@ I will detail it in a different section.
 
 Right now, let me first go through the details about myself.
 
-
 We will get into the detail of `Spec` in a moment,
 
 Before I get into the detail of the `Spec`,
