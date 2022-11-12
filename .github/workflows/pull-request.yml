@@ -6,4 +6,4 @@ jobs:
   code:
     uses: mocktomata/.github/.github/workflows/pnpm-verify-linux.yml@main
       with:
-        - node-version: [16, 18]
+        - node-version: "[16, 18]"
