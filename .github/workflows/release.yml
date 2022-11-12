@@ -9,3 +9,5 @@ jobs:
   docs:
     uses: mocktomata/.github/.github/workflows/pnpm-docs-repo.yml@main
     secrets: inherit
+    with:
+      - publish_dir: ./build
