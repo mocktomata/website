@@ -6,17 +6,6 @@ on:
       - main
       - beta
 jobs:
-  code:
-    uses: mocktomata/.github/.github/workflows/pnpm-verify-linux.yml@main
-    with:
-      node-version: "[16, 18]"
-  release:
-    uses: mocktomata/.github/.github/workflows/pnpm-release-changeset.yml@main
-    needs: code
-    secrets: inherit
-    with:
-      node-version: "[16, 18]"
   docs:
-    uses: mocktomata/.github/.github/workflows/pnpm-docs.yml@main
-    needs: release
+    uses: mocktomata/.github/.github/workflows/pnpm-docs-repo.yml@main
     secrets: inherit
