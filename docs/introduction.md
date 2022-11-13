@@ -1,8 +1,9 @@
 ---
 title: Introduction
+slug: /
 ---
 
-<img src="/mocktomata/img/mocktomata.png" height="200px" align="right"/>
+<img src="/img/mocktomata.png" height="200px" align="right"/>
 
 Welcome to [mocktomata], a behavior simulation system.
 
