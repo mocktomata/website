@@ -35,16 +35,9 @@ const config = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           // Remove this to remove the "edit this page" links.
-          editUrl: 'https://github.com/mocktomata/website',
+          editUrl: 'https://github.com/mocktomata/website/blob/main',
           routeBasePath: '/'
         },
-        // blog: {
-        //   showReadingTime: true,
-        //   // Please change this to your repo.
-        //   // Remove this to remove the "edit this page" links.
-        //   editUrl:
-        //     'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-        // },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
@@ -77,7 +70,6 @@ const config = {
             label: 'Documentation',
             position: 'right'
           },
-          // { to: '/blog', label: 'Blog', position: 'left' },
           {
             href: 'https://github.com/mocktomata/mocktomata',
             label: 'GitHub',
