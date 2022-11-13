@@ -71,6 +71,8 @@ mockto('get friends', (specName, spec) => {
     await spec.done()
   })
 })
+
+afterall(mockto.cleanup)
 ```
 
 When you run this test for the first time,

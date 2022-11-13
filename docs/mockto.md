@@ -1,3 +1,8 @@
+---
+hide_title: true
+---
+## `mockto`
+
 Now it's time to show you everything I can do.
 
 Let me introduce myself one more time.
@@ -41,7 +46,7 @@ we will focus on how we differ and provide the functionality to you.
 
 Here are the things that we share.
 We will just describe what they are,
-and you can find out more about them in the common documentation:
+and you can find out more about them following the links:
 
 - [Spec][Spec]: specification of behavior we record and replay.
 - [spec subject][spec-subject] : the subject to record the behavior from (`axios` in the example).
@@ -60,13 +65,23 @@ Let's take a look at my main API in detail:
 
 This is the common way to utilize me.
 
+[`specName`][specname] must be unique within one test file,
+and `specOptions` is a [`Spec.options`][spec].
+
+The `handler` is where you use the [`spec()`][spec] to write your test.
+
+The [`spec()`][spec] is a function as well as an object holder other functions and properties:
+
+- [`spec.mode`][specmode]
+- [`spec.done()`][done]
+- [`spec.maskValue()`][maskvalue]
+- [`spec.ignoreMismatch()`][ignoremismatch]
+
+[`reporter`](./spec.md#reporter) is a [`MemoryLogReporter`][memoryLogReporter].
+
 I will run the [Spec] in [auto mode][specmode].
 
 This behavior can be changed through [configuration].
-
-The `specOptions` is a [`Spec.Options`][spec].
-
-The `handler` is where you use the [`spec()`][spec] to write your test.
 
 There are 3 variants of this call:
 
@@ -152,3 +167,5 @@ Refer to [`configuration tips and tricks`](./configuration.md#tips-and-tricks) s
 [standard-log]: https://github.com/unional/standard-log
 [standard-log]: https://github.com/unional/standard-log
 [zucchini]: ./zucchini.md
+[specname]: ./spec.md#uniqueness-of-specname
+[spec]: ./spec.md#spec

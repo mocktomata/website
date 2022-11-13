@@ -1,13 +1,18 @@
-Hi, This is `komondor`.
+---
+hide_title: true
+---
 
-<!-- markdownlint-disable-next-line -->
-I used to be a guard dog. <img src="/mocktomata/img/komondor.jpg" alt="komondor" width="20"/>
+## `komondor`
+
+Hi, This is [`komondor`][komondor].
+
+I used to be a guard dog. <img src="/website/img/komondor.jpg" alt="komondor" width="20"/>
 
 But nowadays, I'm one of the four automata in the [mocktomata] family.
 
-I also have an alias `kd` if you think my name is too long.
+If you find my name is too long, you can also call me `kd`.
 
-While [`mockto`] is specialized for testing,
+While [`mockto`][mockto] specialized for testing,
 I'm more general purposed and versatile.
 
 Here is how to write the same test from [introduction]:
@@ -26,127 +31,137 @@ test('get friends', async () => {
   await spec.done()
 })
 
-afterAll(() => komondor.cleanup())
+afterAll(komondor.cleanup)
 ```
 
-So you can see [`mockto`] and me are pretty similar.
-The only different is that you call me within the test,
-and you have to repeat the `specName` (if it is the same as your test description,
+You can see [`mockto`][mockto] and me are pretty similar.
+
+The main difference is that you call me within the test,
+and you have to repeat the [`specName`][specname] (if it is the same as your test description,
 which is the case most of the time).
 
-Here is my API:
+All mocktomata provides similar functionalities.
 
-- [`komondor(specName, [options]): Spec`](#komondorspecname-options-spec)
-- [`komondor.live(specName, [options]): Spec`](#komondorlivespecname-options-spec)
-- [`komondor.save(specName, [options], (specName, spec) => void)`](#komondorsavespecname-options-specname-spec--void)
-- [`komondor.simulate(specName, [options], (specName, spec) => void)`](#komondorsimulatespecname-options-specname-spec--void)
-- [`komondor.cleanup()`](#komondorcleanup)
-- [Tips and Tricks](#tips-and-tricks)
-  - [Recorded Demo](#recorded-demo)
-  - [Live Debug Recording](#live-debug-recording)
-- [Architecture Consideration](#architecture-consideration)
-  - [Clean Architecture](#clean-architecture)
-  - [Dependency Injection](#dependency-injection)
+Here are the things we share, for reference:
 
-## `komondor(specName, [options]): Spec`
+- [Spec][Spec]: specification of behavior we record and replay.
+- [spec subject][spec-subject] : the subject to record the behavior from (`axios` in the example).
+- [`SpecRecord`][specrecord]: The record we saved for a [Spec][Spec].
+- [`spec()`][spec]: the function to create a [spec subject][spec-subject] .
+- [`reporter`][reporter]: a [`MemoryLogReporter`][memoryLogReporter] from [standard-log].
+- [`mode`][specmode]: the [`SpecMode`][specmode] the code is currently running in.
+- [`done()`][done]: the function to indicate the [Spec][Spec] is done.
+- [`cleanup()`][cleanup]: a overall clean up function.
+- [`maskValue()`][maskvalue]: the function to mask sensitive value from logs and [`SpecRecord`][specrecord].
+- [`ignoreMismatch()`][ignoremismatch]: the function to tell us to ignore specific changes.
 
-This is my basic usage.
+My API look like this:
 
-It will return a [`spec`](./spec.md) object to record or replay the behavior.
+> `komondor(specName, specOptions?): spec`
 
-Just like [`mockto`], the `Spec` is running in `auto` mode.
+[`specName`][specname] must be unique within one test file,
+and `specOptions` is a [`Spec.options`][spec].
 
-What that means is that when when the code executes,
-if there is no `SpecRecord` available,
-the `Spec` will make the actual calls and record the behavior.
-If `SpecRecord` available, the `Spec` will load the record and replay the behavior.
+I returns a [`spec()`][spec] function,
+which is also an object holding the other functions and properties:
+
+- [`spec.reporter`][reporter] (note that this is different than [`mockto`][mockto])
+- [`spec.mode`][specmode]
+- [`spec.done()`][done]
+- [`spec.maskValue()`][maskvalue]
+- [`spec.ignoreMismatch()`][ignoremismatch]
+
+I will run the [Spec] in [auto mode][specmode].
 
 This behavior can be changed through [configuration].
 
-The `specName` is the name of the [`Spec`],
-and it needs to be unique within one test file.
+There are 3 variants of this call:
 
-The `Spec` instance returned is the same as the one from [`mockto`],
-with one difference: it contains the `reporter` property which is a `MemoryLogReporter` from [standard-log].
+> `komondor.live(...)`
+> `komondor.save(...)`
+> `komondor.simulate(...)`
 
-i.e. here are the two different ways to get the same `reporter` when using [`mockto`] and using me:
+They run the [Spec] in those [mode][specmode] respectively.
+The [configuration] will not change the behavior if I am called this way.
 
-```ts
-mockto('get friends', (_, _, reporter) => { ... })
+> `mockto.cleanup()`
 
-// vs
-test('get friends', async () => {
-  const spec = komondor('get friends')
-  spec.reporter
-})
-```
+This is the [`cleanup()`][cleanup] function.
 
-## `komondor.live(specName, [options]): Spec`
+> alias as `kd`
 
-Always run the spec in `live` mode.
-Actual calls will be made, and the behavior is not recorded.
-These specs are not affected by configuration.
-
-## `komondor.save(specName, [options], (specName, spec) => void)`
-
-Always run the spec in `save` mode regardless if a spec record exists or not.
-These specs are not affected by configuration.
-
-## `komondor.simulate(specName, [options], (specName, spec) => void)`
-
-Always run the spec in `simulate` mode.
-These specs are not affected by configuration.
-
-## `komondor.cleanup()`
-
-`komondor` internally has a time tracker to make sure you have called `spec.done()` at the end of each test,
-because that is a very common mistake.
-
-But test runner like `jest` will emit a warning if there are open handles at the end of the test suite (for each file).
-`komondor.cleanup()` will clear those handles and emit necessary warnings.
+In my past live, people say my name is too long.
+So this time, I have an alias `kd`:
 
 ```ts
-afterAll(() => komondor.cleanup())
+import { kd } from 'mocktomata'
 
-test('some test', async () => {
-  const spec = komondor('some test')
-  ...
+test('...', async () => {
+  const spec = kd(...)
 })
 ```
 
 ## Tips and Tricks
 
-`komondor` shares the same tips and tricks for [`mockto`](./mockto.md#tips-and-tricks).
+[`komondor`][komondor] shares the same tips and tricks as [`mockto`](./mockto.md#tips-and-tricks).
 
 But it also has its own when it is used in production.
 
 ### Recorded Demo
 
-Using `komondor` can record all interactions to any external system.
+Using [`komondor`][komondor] can record all interactions to any external system.
 That means you can create a record, and replay it in a live demo.
+
+**Note that the browser side support is not yet available in 7.0.**
 
 ### Live Debug Recording
 
 If your customer reports a problem,
-you can get into a live debug session with your customer and turn on `komondor` recording.
+you can get into a live debug session with your customer and turn on [`komondor`][komondor] recording.
 Then you can record the complete behavior and reproduce it later on.
 
+**Note that the browser side support is not yet available in 7.0.**
 ## Architecture Consideration
 
-To use `komondor` in production code,
+To use [`komondor`][komondor] in production code,
 there are some architecture best practice you can follow to make it easier.
 
 ### Clean Architecture
 
 #### Dependency Injection
 
-Design your application with dependency injection in mind will make it very easy to use `komondor` in production.
+Design your application with dependency injection in mind will make it very easy to use [`komondor`][komondor] in production.
 
 All you need to do as passing in the spec'd instance of your dependency, and it will work as is.
-When the time is right, call `spec.done()` to save the record.
+When the time is right, call [`spec.done()`][done] to save the record.
 
-[introduction]: ./introduction.md
-[`mockto`]: ./mockto.md
+[cleanup]: ./spec.md#cleanup
 [configuration]: ./configuration.md
+[configuration]: ./configuration.md
+[done]: ./spec.md#done
+[done]: ./spec.md#done
+[ignoremismatch]: ./spec.md#ignoremismatch
+[ignoremismatch]: ./spec.md#ignoremismatch
+[introduction]: ./introduction.md
+[introduction]: ./introduction.md
+[komondor]: ./komondor.md
+[maskvalue]: ./spec.md#maskvalue
+[maskvalue]: ./spec.md#maskvalue
+[memoryLogReporter]: https://github.com/unional/standard-log/blob/main/packages/log/ts/memory.ts#L7
+[mockto]: ./mockto.md
+[mocktomata]: https://github.com/mocktomata/mocktomata/blob/master/packages/mocktomata
+[reporter]: ./spec.md#reporter
+[reporter]: ./spec.md#reporter
+[spec-subject]: ./spec.md#what-can-be-a-spec-subject
+[spec]: ./spec.md#spec
+[spec]: ./spec.md#spec
+[spec]: ./spec.md#spec
+[Spec]: ./spec.md#what-is-spec
+[specmode]: ./spec.md#specmode
+[specmode]: ./spec.md#specmode
+[specname]: ./spec.md#uniqueness-of-specname
+[specrecord]: ./spec.md#specrecord
 [standard-log]: https://github.com/unional/standard-log
-[`Spec`]: ./spec.md
+[standard-log]: https://github.com/unional/standard-log
+[standard-log]: https://github.com/unional/standard-log
+[zucchini]: ./zucchini.md
