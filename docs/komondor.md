@@ -26,7 +26,7 @@ test('get friends', async () => {
   await spec.done()
 })
 
-afterAll(() => komondor.teardown())
+afterAll(() => komondor.cleanup())
 ```
 
 So you can see [`mockto`] and me are pretty similar.
@@ -40,7 +40,7 @@ Here is my API:
 - [`komondor.live(specName, [options]): Spec`](#komondorlivespecname-options-spec)
 - [`komondor.save(specName, [options], (specName, spec) => void)`](#komondorsavespecname-options-specname-spec--void)
 - [`komondor.simulate(specName, [options], (specName, spec) => void)`](#komondorsimulatespecname-options-specname-spec--void)
-- [`komondor.teardown()`](#komondorteardown)
+- [`komondor.cleanup()`](#komondorcleanup)
 - [Tips and Tricks](#tips-and-tricks)
   - [Recorded Demo](#recorded-demo)
   - [Live Debug Recording](#live-debug-recording)
@@ -97,16 +97,16 @@ These specs are not affected by configuration.
 Always run the spec in `simulate` mode.
 These specs are not affected by configuration.
 
-## `komondor.teardown()`
+## `komondor.cleanup()`
 
 `komondor` internally has a time tracker to make sure you have called `spec.done()` at the end of each test,
 because that is a very common mistake.
 
 But test runner like `jest` will emit a warning if there are open handles at the end of the test suite (for each file).
-`komondor.teardown()` will clear those handles and emit necessary warnings.
+`komondor.cleanup()` will clear those handles and emit necessary warnings.
 
 ```ts
-afterAll(() => komondor.teardown())
+afterAll(() => komondor.cleanup())
 
 test('some test', async () => {
   const spec = komondor('some test')

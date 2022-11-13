@@ -1,11 +1,13 @@
 Now it's time to show you everything I can do.
 
+Let me introduce myself one more time.
+
 I am one of the four mocktomata in the [mocktomata] family.
 
 I specialize in writing tests.
 
-Let me repeat the example from [introduction],
-but with detail explanations:
+In [introduction],
+I showed you this example:
 
 ```ts
 import axios from 'axios'
@@ -23,103 +25,63 @@ mockto('get friends', (specName, spec) => {
 })
 ```
 
-You can see that the key piece is the `spec` function.
+You call me first and write your test inside the `handler`.
+By doing that, you can describe the test only once (`"get friends"` in the example).
+That value is passed to the `handler` as `specName`,
+so you can use it in your test description (`test(specName, ...)`).
+
+Beside that, I am very similar to [komondor].
+
 In fact, while every mocktomaton do things a bit differently,
-at our core we all provide a `spec` function to you.
+and are good at specific use cases,
+under the hood we provide almost the same functionality and functions.
 
-The `Spec` is what we use to track "a set of behavior".
-The only different is how do we provide it to you.
+So when each mocktomaton introduce ourselves,
+we will focus on how we differ and provide the functionality to you.
 
-Since it is a standalone topic that shared among all mocktomata,
-I will detail it in a different section.
+Here are the things that we share.
+We will just describe what they are,
+and you can find out more about them in the common documentation:
 
-Right now, let me first go through the details about myself.
+- [Spec][Spec]: specification of behavior we record and replay.
+- [spec subject][spec-subject] : the subject to record the behavior from (`axios` in the example).
+- [`SpecRecord`][specrecord]: The record we saved for a [Spec][Spec].
+- [`spec()`][spec]: the function to create a [spec subject][spec-subject] .
+- [`reporter`][reporter]: a [`MemoryLogReporter`][memoryLogReporter] from [standard-log].
+- [`mode`][specmode]: the [`SpecMode`][specmode] the code is currently running in.
+- [`done()`][done]: the function to indicate the [Spec][Spec] is done.
+- [`cleanup()`][cleanup]: a overall clean up function.
+- [`maskValue()`][maskvalue]: the function to mask sensitive value from logs and [`SpecRecord`][specrecord].
+- [`ignoreMismatch()`][ignoremismatch]: the function to tell us to ignore specific changes.
 
-We will get into the detail of `Spec` in a moment,
+Let's take a look at my main API in detail:
 
-Before I get into the detail of the `Spec`,
-let me first describe my API:
-
-- [`mockto(specName, [options], (specName, spec, reporter) => void)`](#mocktospecname-options-specname-spec-reporter--void)
-- [`mockto.live(specName, [options], (specName, spec, reporter) => void)`](#mocktolivespecname-options-specname-spec-reporter--void)
-- [`mockto.save(specName, [options], (specName, spec, reporter) => void)`](#mocktosavespecname-options-specname-spec-reporter--void)
-- [`mockto.simulate(specName, [options], (specName, spec, reporter) => void)`](#mocktosimulatespecname-options-specname-spec-reporter--void)
-- [`mockto.teardown()`](#mocktoteardown)
-- [Tips and Tricks](#tips-and-tricks)
-  - [TDD Workflow](#tdd-workflow)
-  - [Lazy TDD Workflow](#lazy-tdd-workflow)
-  - [Streamlined Workflow](#streamlined-workflow)
-  - [Update One Test Record](#update-one-test-record)
-  - [Preserving Passed Tests](#preserving-passed-tests)
-  - [Use Configuration To Update Record](#use-configuration-to-update-record)
-
-## `mockto(specName, [options], (specName, spec, reporter) => void)`
+> `mockto(specName, specOptions?, handler: (specName, spec, reporter) => void)`
 
 This is the common way to utilize me.
 
-It will run the `Spec` in `auto` mode.
-
-What that means is that when when the code executes,
-if there is no `SpecRecord` available,
-the `Spec` will make the actual calls and record the behavior.
-If `SpecRecord` available, the `Spec` will load the record and replay the behavior.
+I will run the [Spec] in [auto mode][specmode].
 
 This behavior can be changed through [configuration].
 
-The `specName` is the name of the `Spec` (duh).
-It is passed into the `handler` so that you can use it as the test description.
-This way, you don't have to repeat the same thing twice.
+The `specOptions` is a [`Spec.Options`][spec].
 
-It is also used as the identifier of the `Spec` within one test file.
-The `SpecRecord` will be named after the `specName`.
-That means, if you use some grouping functions such as `describe()`,
-you may accidentially two `Spec` with the same identifier,
-so one of them will not work correctly.
-I'll talk more about it when we get to the detail of `Spec`.
+The `handler` is where you use the [`spec()`][spec] to write your test.
 
-The `handler` is where I provide the `spec` function to you.
-You can use it to write your test.
+There are 3 variants of this call:
 
-The `handler` also provides the `reporter` which is a `MemoryLogReporter` from [standard-log].
-It captures the logs so that you can examine them programmatically.
-It is part of the `Spec` so I will show you how to use it in that section.
+> `mockto.live(...)`
+> `mockto.save(...)`
+> `mockto.simulate(...)`
 
-The `options` is a `Spec.Options` that used to configure the `Spec`.
-Again, I will talk more about it when we get to the detail of `Spec`.
+They run the [Spec] in those [mode][specmode] respectively.
+The [configuration] will not change the behavior if I am called this way.
 
-## `mockto.live(specName, [options], (specName, spec, reporter) => void)`
+> `mockto.cleanup()`
 
-Always run the spec in `live` mode.
-Actual calls will be made, and the behavior is not recorded.
-These specs are not affected by configuration.
+This is the [`cleanup()`][cleanup] function.
 
-## `mockto.save(specName, [options], (specName, spec, reporter) => void)`
-
-Always run the spec in `save` mode regardless if a spec record exists or not.
-These specs are not affected by configuration.
-
-## `mockto.simulate(specName, [options], (specName, spec, reporter) => void)`
-
-Always run the spec in `simulate` mode.
-These specs are not affected by configuration.
-
-## `mockto.teardown()`
-
-Each mocktomata internally has a time tracker to make sure you have called `spec.done()` at the end of each test,
-because that is a very common mistake.
-
-But test runner like `jest` will emit a warning if there are open handles at the end of the test suite (for each file).
-`mockto.teardown()` will clear those handles and emit necessary warnings.
-
-```ts
-afterAll(() => mockto.teardown())
-
-mockto('some test', (specName, spec) => {
-  test(specName, async () => { ... })
-})
-```
-
-## alias as `mt`
+> alias as `mt`
 
 Besides calling me as `mockto`, you can also call me as `mt`:
 
@@ -136,7 +98,7 @@ Oh well.
 
 ## Tips and Tricks
 
-Here are some tips and tricks to help you become more productive when using `mockto`.
+Here are some tips and tricks to help you become more productive when using me.
 
 ### TDD Workflow
 
@@ -152,12 +114,13 @@ This will save you from running the test again after updating to `mockto()`.
 ### Streamlined Workflow
 
 Instead of using `mockto.live()` or `mockto.save()`,
-you can use `mockto()` directly but do not add the last `await spec.done()` call until you are done refactoring.
-When your get your test to pass, it will emit a warning letting you know you forgot to do `await spec.done()`.
+you can use `mockto()` directly but do not add the [`done()`][done] call until you are done refactoring.
+Your test runner will complain until you call [`done()`][done],
+but you can safely ignore that as you know what you are doing.
 
 ### Update One Test Record
 
-By changing `mockto()` to `mockto.save()`, run the test, and switch it back.
+Change `mockto()` to `mockto.save()`, run the test, and switch it back.
 
 ### Preserving Passed Tests
 
@@ -171,8 +134,21 @@ However, this should be done with care, because you are essentially changing the
 
 Refer to [`configuration tips and tricks`](./configuration.md#tips-and-tricks) session for ways to update multiple records.
 
-[mocktomata]: https://github.com/mocktomata/mocktomata/blob/master/packages/mocktomata
-[komondor]: ./komondor.md
-[zucchini]: ./zucchini.md
-[standard-log]: https://github.com/unional/standard-log
+[cleanup]: ./spec.md#cleanup
 [configuration]: ./configuration.md
+[done]: ./spec.md#done
+[ignoremismatch]: ./spec.md#ignoremismatch
+[introduction]: ./introduction.md
+[komondor]: ./komondor.md
+[maskvalue]: ./spec.md#maskvalue
+[memoryLogReporter]: https://github.com/unional/standard-log/blob/main/packages/log/ts/memory.ts#L7
+[mocktomata]: https://github.com/mocktomata/mocktomata/blob/master/packages/mocktomata
+[reporter]: ./spec.md#reporter
+[spec-subject]: ./spec.md#what-can-be-a-spec-subject
+[spec]: ./spec.md#spec
+[Spec]: ./spec.md#what-is-spec
+[specmode]: ./spec.md#specmode
+[specrecord]: ./spec.md#specrecord
+[standard-log]: https://github.com/unional/standard-log
+[standard-log]: https://github.com/unional/standard-log
+[zucchini]: ./zucchini.md

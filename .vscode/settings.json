@@ -1,3 +1,13 @@
 {
-  "markdownlint.ignore": ".markdownlintignore"
+  "markdownlint.ignore": ".markdownlintignore",
+  "cSpell.words": [
+    "komondor",
+    "luka",
+    "miku",
+    "mockto",
+    "mocktomata",
+    "rumi",
+    "speced",
+    "unref"
+  ]
 }

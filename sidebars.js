@@ -14,13 +14,18 @@
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 const sidebars = {
   mocktomata: {
-    Basics: [
+    'Getting Started': [
       'introduction',
       'setup',
+    ],
+    'The mocktomata': [
       'mockto',
       'komondor',
       'zucchini',
       'incubator'
+    ],
+    Details: [
+      'spec'
     ]
   }
   // By default, Docusaurus generates a sidebar from the docs folder structure

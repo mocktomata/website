@@ -27,7 +27,7 @@ test('get friends', async () => {
   await done()
 })
 
-afterAll(() => scenario.teardown())
+afterAll(() => scenario.cleanup())
 ```
 
 While that makes me looks like [`komondor`],
@@ -67,7 +67,7 @@ test('get friends', async () => {
   await done()
 })
 
-afterAll(() => scenario.teardown())
+afterAll(() => scenario.cleanup())
 ```
 
 If you understand how powerful I am,
