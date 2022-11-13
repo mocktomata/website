@@ -18,7 +18,7 @@ const sidebars = {
       'introduction',
       'setup',
     ],
-    'The mocktomata': [
+    'Mocktomata members': [
       'mockto',
       'komondor',
       'zucchini',
