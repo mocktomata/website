@@ -1,51 +1,76 @@
-# Configuration
+---
+hide_title: true
+---
+## Configuration
 
-There are three ways to configure `mocktomata`.
+Hi, it's [`mockto`](./mockto.md) here again.
 
-Each way has its own application.
-Also, since `mocktomata` can run in multiple environments,
-the configuration may vary depending on the environment.
-(the variation will be added in the future)
+Remember that in [introduction](./introduction.md), I mentioned that:
 
-- [Configuration](#configuration)
-  - [Configuration File](#configuration-file)
-  - [Using `config()`](#using-config)
-  - [Environment Variables](#environment-variables)
-  - [Tips and Tricks](#tips-and-tricks)
-    - [Define plugins in configuration file](#define-plugins-in-configuration-file)
-    - [Change mode using `config()` function](#change-mode-using-config-function)
-    - [Use Environment Variables in CI](#use-environment-variables-in-ci)
-    - [Acceptance Tests](#acceptance-tests)
-    - [Refresh Records](#refresh-records)
+> We can isolate your code from the changes and uncertainty of the outside world.
+And we can connect your code back by a flip of a switch.
+
+The "flip of a switch" part is where configuration comes in.
+
+Also, you might know from [`incubator`](./incubator.md) that [mocktomata] supports [plugins](./plugin.md).
+You can add [plugins](./plugin.md) to help [mocktomata] to handle some specific use cases.
+
+That is also configured in the configuration.
+
+There are 3 ways to configure [mocktomata]:
+
+- [Config file](#configuration-file)
+- [Environment variables](#environment-variables)
+- [Runtime `config()` call][config]
+
+Each of them can configure different settings.
+And when there are conflicts,
+
+> `config()` > Environment variables > Config file
 
 ## Configuration File
 
-`mocktomata` will look for `.mocktomata.js`, `.mocktomata.json`, or the `mocktomata` section inside `package.json`.
+[mocktomata] will look for configuration in the file `mocktomata.json` at the root of the project,
+or a `mocktomata` section inside your `package.json`.
 
-Only one of them should be used at a time.
+Only one of them can be used at a time.
 If more than one configuration are found,
-it will throw a `AmbiguousConfig` error.
+we will throw a `AmbiguousConfig` error.
 
-Using `.mocktomata.json` as an example,
+Using `mocktomata.json` as an example,
 here is what can be configured and their default values:
 
-```json
+```js
 {
-  // Overrides which mode `mockto()` runs in.
-  // By default `mockto()` runs in auto mode.
+  // Overrides the calls with `auto` mode to a specific mode.
   "overrideMode": "<live | save | simulate>",
-  // Filter which `mockto()` mode to override by file path.
+  // Filter the calls to override using file path.
   "filePathFilter": "<regex>",
-  // Filter which `mockto()` mode to override by spec name.
+  // Filter the calls to override using spec name.
   "specNameFilter": "<regex>",
   // A list of plugins to use.
-  "plugins": ["plugin-a"]
+  "plugins": ["plugin-a"],
+  // log level inside `mocktomata`. Default: "info"
+  "logLevel": "error" | "warn" | "info" | "debug" | "trace" | "all",
+  // should the log emit to console. Default: false
+  "emitLog": boolean
 }
 ```
 
+## Environment Variables
+
+Specific configuration can be overridden using environment variables.
+This allows different CI jobs to run [mocktomata] with different configuration.
+
+- `MOCKTOMATA_MODE`: `overrideMode`
+- `MOCKTOMATA_FILE_PATH_FILTER`: `filePathFilter`
+- `MOCKTOMATA_SPEC_NAME_FILTER`: `specNameFilter`
+- `MOCKTOMATA_LOG_LEVEL`: `logLevel`
+
 ## Using `config()`
 
-Configuration can also be overridden in the runtime using the `config()` function.
+Configuration can also be overridden in the runtime using the [`config()`][config] function.
+
 This is useful when the configuration is stored in different means (e.g. database or remote service),
 or used during test startup or test runner plugins (e.g. jest watch plugins) so that the test process do not need to be restarted and do not need to manually change the configuration files.
 
@@ -58,21 +83,12 @@ config({
   specNameFilter: "<regex>",
   plugins: ["plugin-a"],
   // currently only debug level is available
-  logLevel: 'debug'
+  logLevel: 'debug',
+  emitLog: true
 })
 ```
 
-## Environment Variables
-
-Specific configuration can be overridden using environment variables.
-This allows different CI jobs to run `mocktomata` with different configuration.
-
-The names are:
-
-- `MOCKTOMATA_MODE`
-- `MOCKTOMATA_FILE_FILTER`
-- `MOCKTOMATA_SPEC_FILTER`
-- `MOCKTOMATA_LOG`
+Note the [`incubator`](./incubator.md) has its own [`incubator.config()`](./incubator.md#config) to add plugins for testing.
 
 ## Tips and Tricks
 
@@ -83,13 +99,12 @@ it would be easier for you to configure `mocktomata` to your specific needs.
 ### Define plugins in configuration file
 
 This is kind of a no-brainer.
-If your library/application supports multiple environments and requires different plugins,
-use `.mocktomata.js` so that you can use different plugins if needed.
+If you need a plugin, add it to `mocktomata.json`.
 
 ### Change mode using `config()` function
 
 While you can do the same with environment variable,
-calling `config()` in a test setup file is much easier and faster.
+calling [`config()`][config] in a test setup file is much easier and faster.
 
 Especially when you try to flip tests quickly.
 
@@ -104,3 +119,6 @@ Turn your tests into acceptance tests by running tests with `overrideMode = 'liv
 ### Refresh Records
 
 You can easily refresh all records by running tests with `overrideMode = 'save'`.
+
+[mocktomata]: https://github.com/mocktomata/mocktomata/blob/master/packages/mocktomata
+[config]: #using-config
