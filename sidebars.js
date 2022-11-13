@@ -25,7 +25,9 @@ const sidebars = {
       'incubator'
     ],
     Details: [
-      'spec'
+      'spec',
+      'configuration',
+      'plugin'
     ]
   }
   // By default, Docusaurus generates a sidebar from the docs folder structure

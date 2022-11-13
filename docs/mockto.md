@@ -1,6 +1,7 @@
 ---
 hide_title: true
 ---
+
 ## `mockto`
 
 Now it's time to show you everything I can do.
@@ -164,7 +165,6 @@ Refer to [`configuration tips and tricks`](./configuration.md#tips-and-tricks) s
 [Spec]: ./spec.md#what-is-spec
 [specmode]: ./spec.md#specmode
 [specrecord]: ./spec.md#specrecord
-[standard-log]: https://github.com/unional/standard-log
 [standard-log]: https://github.com/unional/standard-log
 [zucchini]: ./zucchini.md
 [specname]: ./spec.md#uniqueness-of-specname
