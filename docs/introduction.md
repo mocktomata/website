@@ -7,7 +7,7 @@ slug: /
 
 Welcome to [mocktomata], a behavior simulation system.
 
-My name is [`mockto`](#mockto).
+My name is [mockto].
 
 I will be your guide around here.
 
@@ -20,7 +20,7 @@ And we can connect your code back by a flip of a switch.
 That means, instead of manually writing mocks, you can write end-to-end (e2e) tests,
 and run them as e2e or unit tests.
 
-Here is a quick example of how to use myself in a test:
+Let's get started with an example.
 
 Let's say you have a function `getFriends()`:
 
@@ -32,6 +32,30 @@ It calls a remote service to get a list of friends based on the input.
 
 The `axios` instance is passed in for easy mocking,
 a common practice for functional styled programming.
+
+When you are not using [mocktomata], typically you will mock `axiso` in your test.
+Here is an example using `jest.fn()`:
+
+```ts
+import axios from 'axios'
+
+test('get friends', async () => {
+  const axios = jest.fn(() => ...)
+
+  const friends = await getFriends(axios, 'miku')
+  expect(friends.map(f => f.name)).toEqual(['luka', 'rumi', 'len', 'ren'])
+})
+
+```
+
+In [mocktomata], there are 4 mocktomaton you can use:
+
+- [mockto]: myself, good at simple testing
+- [komondor]: a general, more versatile mocktomaton that can do more than testing
+- [zucchini]: specialize in BDD, great for writing thousands and thousands of tests
+- [incubator]: specialize in plugin development
+
+Here, I'll use myself as an example:
 
 ```ts
 import axios from 'axios'
@@ -58,15 +82,14 @@ The next time you run the test again,
 I will use the saved `SpecRecord` to replay the behavior.
 So the test is running just like a unit test.
 
-When you want to change my behavior,
-say you want to do run the test as a e2e test,
-or the remote service have changed and you need to update the behavior,
-you can change the `SpecMode` by either:
+These are all done automatically.
+So you can write a test, make it pass, and continue on the next one.
 
-- change `mockto(...)` to `mockto.live(...)` or `mockto.save(...)` for a particular test, or
-- call `config(...)` to change the `SpecMode` for all or a filtered list of tests.
+Of course, there are many other things we can do.
+But before get into them, let me first show you how to setup [mocktomata].
 
-You can learn more about these details in subsequent sections.
-But first, let me show you how to setup [mocktomata].
-
+[incubator]: ./incubator.md
+[komondor]: ./komondor.md
+[mockto]: ./mockto.md
 [mocktomata]: https://github.com/mocktomata/mocktomata/blob/master/packages/mocktomata
+[zucchini]: ./zucchini.md

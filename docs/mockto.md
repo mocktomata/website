@@ -1,7 +1,3 @@
----
-title: mockto
----
-
 Now it's time to show you everything I can do.
 
 I am one of the four mocktomata in the [mocktomata] family.
