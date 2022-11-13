@@ -9,7 +9,7 @@ const config = {
   title: 'mocktomata',
   tagline: 'The behavior simulation system',
   url: 'https://mocktomata.github.io',
-  baseUrl: '/',
+  baseUrl: '/website',
   onBrokenLinks: 'warn', //'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/mocktomata.ico',

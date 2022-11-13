@@ -19,7 +19,8 @@ const sidebars = {
       'setup',
       'mockto',
       'komondor',
-      'zucchini'
+      'zucchini',
+      'incubator'
     ]
   }
   // By default, Docusaurus generates a sidebar from the docs folder structure

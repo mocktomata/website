@@ -17,7 +17,6 @@ the configuration may vary depending on the environment.
     - [Use Environment Variables in CI](#use-environment-variables-in-ci)
     - [Acceptance Tests](#acceptance-tests)
     - [Refresh Records](#refresh-records)
-    - [Detect Stale Records](#detect-stale-records)
 
 ## Configuration File
 
@@ -79,7 +78,7 @@ The names are:
 
 Each configuration mechanism provided is designed for a specific purpose.
 By using these mechanisms with their intended usage,
-it would be easier for you to configure [`mocktomata`](../README.md) to your specific needs.
+it would be easier for you to configure `mocktomata` to your specific needs.
 
 ### Define plugins in configuration file
 
@@ -105,7 +104,3 @@ Turn your tests into acceptance tests by running tests with `overrideMode = 'liv
 ### Refresh Records
 
 You can easily refresh all records by running tests with `overrideMode = 'save'`.
-
-### Detect Stale Records
-
-(To be implemented)

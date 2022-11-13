@@ -3,7 +3,7 @@ title: Introduction
 slug: /
 ---
 
-<img src="/img/mocktomata.png" height="200px" align="right"/>
+<img src="/website/img/mocktomata.png" height="200px" align="right"/>
 
 Welcome to [mocktomata], a behavior simulation system.
 
@@ -15,17 +15,22 @@ In a nutshell, [mocktomata] saves the behavior of your code,
 and simulate it at a later time.
 
 We can isolate your code from the changes and uncertainty of the outside world.
-And we can connect your code back to it by a flip of a switch.
+And we can connect your code back by a flip of a switch.
 
-That means, instead of manually writing mocks, you can write e2e tests,
-and run them as e2e or as unit tests.
+That means, instead of manually writing mocks, you can write end-to-end (e2e) tests,
+and run them as e2e or unit tests.
 
 Here is a quick example of how to use myself in a test:
 
-Assume you have a function `getFriends()`,
-which will call some remote service to get a list of friends based on the input.
-This function is using `axios` and for simplicity for mocking,
-the `axios` instance is passed into the function,
+Let's say you have a function `getFriends()`:
+
+```ts
+export function getFriends(axios, name) { ... }
+```
+
+It calls a remote service to get a list of friends based on the input.
+
+The `axios` instance is passed in for easy mocking,
 a common practice for functional styled programming.
 
 ```ts
