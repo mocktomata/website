@@ -220,16 +220,16 @@ Its signature is:
 
 For more details, you can take a look at [cucumber parameter type][cucumber-parameter-type]
 
-[cucumber-expression]: https://github.com/cucumber/cucumber-expressions
-[spec]: ./spec.md
-[cucumber-parameter-type]: https://github.com/cucumber/cucumber-expressions#custom-parameter-types
 [BDD]: https://cucumber.io/docs/bdd/
+[cucumber-expression]: https://github.com/cucumber/cucumber-expressions
+[cucumber-parameter-type]: https://github.com/cucumber/cucumber-expressions#custom-parameter-types
 [cucumber]: https://cucumber.io/
+[done]: ./spec.md#done
+[ignoremismatch]: ./spec.md#ignoremismatch
 [introduction]: ./introduction.md
 [komondor]: ./komondor.md
-[specmode]: ./spec.md#specmode
-[spec-subject]: ./spec.md#what-can-be-a-spec-subject
-[specrecord]: ./spec.md#specrecord
 [maskvalue]: ./spec.md#maskvalue
-[ignoremismatch]: ./spec.md#ignoremismatch
-[done]: ./spec.md#done
+[spec-subject]: ./spec.md#what-can-be-a-spec-subject
+[spec]: ./spec.md
+[specmode]: ./spec.md#specmode
+[specrecord]: ./spec.md#specrecord

@@ -164,8 +164,7 @@ Refer to [`configuration tips and tricks`](./configuration.md#tips-and-tricks) s
 [spec]: ./spec.md#spec
 [Spec]: ./spec.md#what-is-spec
 [specmode]: ./spec.md#specmode
+[specname]: ./spec.md#uniqueness-of-specname
 [specrecord]: ./spec.md#specrecord
 [standard-log]: https://github.com/unional/standard-log
 [zucchini]: ./zucchini.md
-[specname]: ./spec.md#uniqueness-of-specname
-[spec]: ./spec.md#spec
