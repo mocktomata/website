@@ -48,6 +48,17 @@ And you use it by adding it to your [configuration](./configuration.md):
 }
 ```
 
+To make your plugin more discoverable, you can add the keyword `mocktomata-plugin` in your `package.json`:
+
+```jsonc
+// package.json
+{
+  "keywords": [
+    "mocktomata-plugin"
+  ]
+}
+```
+
 ## `PluginModule`
 
 Your plugin should expose a [`PluginModule`](#pluginmodule) as its default export.
