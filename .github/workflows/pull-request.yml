@@ -4,6 +4,7 @@ on:
     types: [opened, synchronize]
 jobs:
   code:
-    uses: mocktomata/.github/.github/workflows/pnpm-verify-linux.yml@main
+    uses: mocktomata/.github/.github/workflows/pnpm-verify.yml@main
     with:
-      node-version: "[16, 18]"
+      os: '["ubuntu-latest", "macos-latest", "windows-latest"]'
+      node-version: '[16, 18]'
