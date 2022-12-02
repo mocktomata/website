@@ -1,0 +1,26 @@
+{
+  "unversionedId": "configuration",
+  "id": "configuration",
+  "title": "configuration",
+  "description": "Configuration",
+  "source": "@site/docs/configuration.md",
+  "sourceDirName": ".",
+  "slug": "/configuration",
+  "permalink": "/website/configuration",
+  "draft": false,
+  "editUrl": "https://github.com/mocktomata/website/blob/main/docs/configuration.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "hide_title": true
+  },
+  "sidebar": "mocktomata",
+  "previous": {
+    "title": "Spec",
+    "permalink": "/website/spec"
+  },
+  "next": {
+    "title": "plugin",
+    "permalink": "/website/plugin"
+  }
+}

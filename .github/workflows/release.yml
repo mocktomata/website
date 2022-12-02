@@ -6,8 +6,14 @@ on:
       - main
       - beta
 jobs:
+  code:
+    uses: mocktomata/.github/.github/workflows/pnpm-verify.yml@main
+    with:
+      os: '["ubuntu-latest"]'
+      node-version: '[18]'
   docs:
     uses: mocktomata/.github/.github/workflows/pnpm-docs.yml@main
+    needs: code
     secrets: inherit
     with:
-      publish_dir: ./build
+      publish-dir: ./docusaurus/build

@@ -1,0 +1,77 @@
+{
+  "docusaurus-plugin-content-docs": {
+    "default": {
+      "path": "/website/",
+      "versions": [
+        {
+          "name": "current",
+          "label": "Next",
+          "isLast": true,
+          "path": "/website/",
+          "mainDocId": "introduction",
+          "docs": [
+            {
+              "id": "configuration",
+              "path": "/website/configuration",
+              "sidebar": "mocktomata"
+            },
+            {
+              "id": "incubator",
+              "path": "/website/incubator",
+              "sidebar": "mocktomata"
+            },
+            {
+              "id": "introduction",
+              "path": "/website/",
+              "sidebar": "mocktomata"
+            },
+            {
+              "id": "komondor",
+              "path": "/website/komondor",
+              "sidebar": "mocktomata"
+            },
+            {
+              "id": "maskValue",
+              "path": "/website/maskValue"
+            },
+            {
+              "id": "mockto",
+              "path": "/website/mockto",
+              "sidebar": "mocktomata"
+            },
+            {
+              "id": "plugin",
+              "path": "/website/plugin",
+              "sidebar": "mocktomata"
+            },
+            {
+              "id": "setup",
+              "path": "/website/setup",
+              "sidebar": "mocktomata"
+            },
+            {
+              "id": "spec",
+              "path": "/website/spec",
+              "sidebar": "mocktomata"
+            },
+            {
+              "id": "zucchini",
+              "path": "/website/zucchini",
+              "sidebar": "mocktomata"
+            }
+          ],
+          "draftIds": [],
+          "sidebars": {
+            "mocktomata": {
+              "link": {
+                "path": "/website/",
+                "label": "introduction"
+              }
+            }
+          }
+        }
+      ],
+      "breadcrumbs": true
+    }
+  }
+}

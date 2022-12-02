@@ -1,0 +1,24 @@
+{
+  "unversionedId": "setup",
+  "id": "setup",
+  "title": "setup",
+  "description": "Install",
+  "source": "@site/docs/setup.md",
+  "sourceDirName": ".",
+  "slug": "/setup",
+  "permalink": "/website/setup",
+  "draft": false,
+  "editUrl": "https://github.com/mocktomata/website/blob/main/docs/setup.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "mocktomata",
+  "previous": {
+    "title": "Introduction",
+    "permalink": "/website/"
+  },
+  "next": {
+    "title": "mockto",
+    "permalink": "/website/mockto"
+  }
+}

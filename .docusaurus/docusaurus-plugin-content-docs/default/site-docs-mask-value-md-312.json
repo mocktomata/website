@@ -1,0 +1,15 @@
+{
+  "unversionedId": "maskValue",
+  "id": "maskValue",
+  "title": "maskValue",
+  "description": "When using mocktomata, it produces two kinds of artifacts: logs and SpecRecord.",
+  "source": "@site/docs/maskValue.md",
+  "sourceDirName": ".",
+  "slug": "/maskValue",
+  "permalink": "/website/maskValue",
+  "draft": false,
+  "editUrl": "https://github.com/mocktomata/website/blob/main/docs/maskValue.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

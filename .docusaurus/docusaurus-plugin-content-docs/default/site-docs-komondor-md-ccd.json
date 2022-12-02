@@ -1,0 +1,26 @@
+{
+  "unversionedId": "komondor",
+  "id": "komondor",
+  "title": "komondor",
+  "description": "komondor",
+  "source": "@site/docs/komondor.md",
+  "sourceDirName": ".",
+  "slug": "/komondor",
+  "permalink": "/website/komondor",
+  "draft": false,
+  "editUrl": "https://github.com/mocktomata/website/blob/main/docs/komondor.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "hide_title": true
+  },
+  "sidebar": "mocktomata",
+  "previous": {
+    "title": "mockto",
+    "permalink": "/website/mockto"
+  },
+  "next": {
+    "title": "zucchini",
+    "permalink": "/website/zucchini"
+  }
+}

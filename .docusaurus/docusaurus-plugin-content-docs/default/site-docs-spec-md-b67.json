@@ -1,0 +1,27 @@
+{
+  "unversionedId": "spec",
+  "id": "spec",
+  "title": "spec",
+  "description": "What is Spec?",
+  "source": "@site/docs/spec.md",
+  "sourceDirName": ".",
+  "slug": "/spec",
+  "permalink": "/website/spec",
+  "draft": false,
+  "editUrl": "https://github.com/mocktomata/website/blob/main/docs/spec.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "sidebar_label": "Spec",
+    "hide_title": true
+  },
+  "sidebar": "mocktomata",
+  "previous": {
+    "title": "incubator",
+    "permalink": "/website/incubator"
+  },
+  "next": {
+    "title": "configuration",
+    "permalink": "/website/configuration"
+  }
+}

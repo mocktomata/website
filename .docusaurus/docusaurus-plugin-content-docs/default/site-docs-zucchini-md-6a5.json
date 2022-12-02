@@ -1,0 +1,26 @@
+{
+  "unversionedId": "zucchini",
+  "id": "zucchini",
+  "title": "zucchini",
+  "description": "zucchini",
+  "source": "@site/docs/zucchini.md",
+  "sourceDirName": ".",
+  "slug": "/zucchini",
+  "permalink": "/website/zucchini",
+  "draft": false,
+  "editUrl": "https://github.com/mocktomata/website/blob/main/docs/zucchini.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "hide_title": true
+  },
+  "sidebar": "mocktomata",
+  "previous": {
+    "title": "komondor",
+    "permalink": "/website/komondor"
+  },
+  "next": {
+    "title": "incubator",
+    "permalink": "/website/incubator"
+  }
+}

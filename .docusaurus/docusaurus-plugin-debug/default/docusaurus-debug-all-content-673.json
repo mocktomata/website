@@ -1,0 +1,351 @@
+{
+  "docusaurus-plugin-content-docs": {
+    "default": {
+      "loadedVersions": [
+        {
+          "versionName": "current",
+          "label": "Next",
+          "banner": null,
+          "badge": false,
+          "noIndex": false,
+          "className": "docs-version-current",
+          "path": "/website/",
+          "tagsPath": "/website/tags",
+          "editUrl": "https://github.com/mocktomata/website/blob/main/docs",
+          "editUrlLocalized": "https://github.com/mocktomata/website/blob/main/i18n/en/docusaurus-plugin-content-docs/current",
+          "isLast": true,
+          "routePriority": -1,
+          "sidebarFilePath": "D:\\code\\mocktomata\\website\\sidebars.js",
+          "contentPath": "D:\\code\\mocktomata\\website\\docs",
+          "contentPathLocalized": "D:\\code\\mocktomata\\website\\i18n\\en\\docusaurus-plugin-content-docs\\current",
+          "docs": [
+            {
+              "unversionedId": "configuration",
+              "id": "configuration",
+              "title": "configuration",
+              "description": "Configuration",
+              "source": "@site/docs/configuration.md",
+              "sourceDirName": ".",
+              "slug": "/configuration",
+              "permalink": "/website/configuration",
+              "draft": false,
+              "editUrl": "https://github.com/mocktomata/website/blob/main/docs/configuration.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "hide_title": true
+              },
+              "sidebar": "mocktomata",
+              "previous": {
+                "title": "Spec",
+                "permalink": "/website/spec"
+              },
+              "next": {
+                "title": "plugin",
+                "permalink": "/website/plugin"
+              }
+            },
+            {
+              "unversionedId": "incubator",
+              "id": "incubator",
+              "title": "incubator",
+              "description": "incubator",
+              "source": "@site/docs/incubator.md",
+              "sourceDirName": ".",
+              "slug": "/incubator",
+              "permalink": "/website/incubator",
+              "draft": false,
+              "editUrl": "https://github.com/mocktomata/website/blob/main/docs/incubator.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "hide_title": true
+              },
+              "sidebar": "mocktomata",
+              "previous": {
+                "title": "zucchini",
+                "permalink": "/website/zucchini"
+              },
+              "next": {
+                "title": "Spec",
+                "permalink": "/website/spec"
+              }
+            },
+            {
+              "unversionedId": "introduction",
+              "id": "introduction",
+              "title": "Introduction",
+              "description": "Welcome to [mocktomata], a behavior simulation system.",
+              "source": "@site/docs/introduction.md",
+              "sourceDirName": ".",
+              "slug": "/",
+              "permalink": "/website/",
+              "draft": false,
+              "editUrl": "https://github.com/mocktomata/website/blob/main/docs/introduction.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "title": "Introduction",
+                "slug": "/"
+              },
+              "sidebar": "mocktomata",
+              "next": {
+                "title": "setup",
+                "permalink": "/website/setup"
+              }
+            },
+            {
+              "unversionedId": "komondor",
+              "id": "komondor",
+              "title": "komondor",
+              "description": "komondor",
+              "source": "@site/docs/komondor.md",
+              "sourceDirName": ".",
+              "slug": "/komondor",
+              "permalink": "/website/komondor",
+              "draft": false,
+              "editUrl": "https://github.com/mocktomata/website/blob/main/docs/komondor.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "hide_title": true
+              },
+              "sidebar": "mocktomata",
+              "previous": {
+                "title": "mockto",
+                "permalink": "/website/mockto"
+              },
+              "next": {
+                "title": "zucchini",
+                "permalink": "/website/zucchini"
+              }
+            },
+            {
+              "unversionedId": "maskValue",
+              "id": "maskValue",
+              "title": "maskValue",
+              "description": "When using mocktomata, it produces two kinds of artifacts: logs and SpecRecord.",
+              "source": "@site/docs/maskValue.md",
+              "sourceDirName": ".",
+              "slug": "/maskValue",
+              "permalink": "/website/maskValue",
+              "draft": false,
+              "editUrl": "https://github.com/mocktomata/website/blob/main/docs/maskValue.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {}
+            },
+            {
+              "unversionedId": "mockto",
+              "id": "mockto",
+              "title": "mockto",
+              "description": "mockto",
+              "source": "@site/docs/mockto.md",
+              "sourceDirName": ".",
+              "slug": "/mockto",
+              "permalink": "/website/mockto",
+              "draft": false,
+              "editUrl": "https://github.com/mocktomata/website/blob/main/docs/mockto.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "hide_title": true
+              },
+              "sidebar": "mocktomata",
+              "previous": {
+                "title": "setup",
+                "permalink": "/website/setup"
+              },
+              "next": {
+                "title": "komondor",
+                "permalink": "/website/komondor"
+              }
+            },
+            {
+              "unversionedId": "plugin",
+              "id": "plugin",
+              "title": "plugin",
+              "description": "Plugin",
+              "source": "@site/docs/plugin.md",
+              "sourceDirName": ".",
+              "slug": "/plugin",
+              "permalink": "/website/plugin",
+              "draft": false,
+              "editUrl": "https://github.com/mocktomata/website/blob/main/docs/plugin.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "hide_title": true
+              },
+              "sidebar": "mocktomata",
+              "previous": {
+                "title": "configuration",
+                "permalink": "/website/configuration"
+              }
+            },
+            {
+              "unversionedId": "setup",
+              "id": "setup",
+              "title": "setup",
+              "description": "Install",
+              "source": "@site/docs/setup.md",
+              "sourceDirName": ".",
+              "slug": "/setup",
+              "permalink": "/website/setup",
+              "draft": false,
+              "editUrl": "https://github.com/mocktomata/website/blob/main/docs/setup.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "mocktomata",
+              "previous": {
+                "title": "Introduction",
+                "permalink": "/website/"
+              },
+              "next": {
+                "title": "mockto",
+                "permalink": "/website/mockto"
+              }
+            },
+            {
+              "unversionedId": "spec",
+              "id": "spec",
+              "title": "spec",
+              "description": "What is Spec?",
+              "source": "@site/docs/spec.md",
+              "sourceDirName": ".",
+              "slug": "/spec",
+              "permalink": "/website/spec",
+              "draft": false,
+              "editUrl": "https://github.com/mocktomata/website/blob/main/docs/spec.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "sidebar_label": "Spec",
+                "hide_title": true
+              },
+              "sidebar": "mocktomata",
+              "previous": {
+                "title": "incubator",
+                "permalink": "/website/incubator"
+              },
+              "next": {
+                "title": "configuration",
+                "permalink": "/website/configuration"
+              }
+            },
+            {
+              "unversionedId": "zucchini",
+              "id": "zucchini",
+              "title": "zucchini",
+              "description": "zucchini",
+              "source": "@site/docs/zucchini.md",
+              "sourceDirName": ".",
+              "slug": "/zucchini",
+              "permalink": "/website/zucchini",
+              "draft": false,
+              "editUrl": "https://github.com/mocktomata/website/blob/main/docs/zucchini.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "hide_title": true
+              },
+              "sidebar": "mocktomata",
+              "previous": {
+                "title": "komondor",
+                "permalink": "/website/komondor"
+              },
+              "next": {
+                "title": "incubator",
+                "permalink": "/website/incubator"
+              }
+            }
+          ],
+          "drafts": [],
+          "sidebars": {
+            "mocktomata": [
+              {
+                "type": "category",
+                "label": "Getting Started",
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "introduction"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "setup"
+                  }
+                ],
+                "collapsed": true,
+                "collapsible": true
+              },
+              {
+                "type": "category",
+                "label": "Mocktomata members",
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "mockto"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "komondor"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "zucchini"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "incubator"
+                  }
+                ],
+                "collapsed": true,
+                "collapsible": true
+              },
+              {
+                "type": "category",
+                "label": "Details",
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "spec"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "configuration"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "plugin"
+                  }
+                ],
+                "collapsed": true,
+                "collapsible": true
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "docusaurus-plugin-content-blog": {
+    "default": {
+      "blogSidebarTitle": "Recent posts",
+      "blogPosts": [],
+      "blogListPaginated": [],
+      "blogTags": {},
+      "blogTagsListPath": "/website/blog/tags",
+      "blogTagsPaginated": []
+    }
+  },
+  "docusaurus-plugin-content-pages": {
+    "default": null
+  },
+  "docusaurus-plugin-debug": {},
+  "docusaurus-theme-classic": {},
+  "docusaurus-plugin-client-redirects": {},
+  "docusaurus-bootstrap-plugin": {},
+  "docusaurus-mdx-fallback-plugin": {}
+}

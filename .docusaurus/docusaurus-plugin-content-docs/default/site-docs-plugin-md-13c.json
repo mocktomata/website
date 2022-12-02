@@ -1,0 +1,22 @@
+{
+  "unversionedId": "plugin",
+  "id": "plugin",
+  "title": "plugin",
+  "description": "Plugin",
+  "source": "@site/docs/plugin.md",
+  "sourceDirName": ".",
+  "slug": "/plugin",
+  "permalink": "/website/plugin",
+  "draft": false,
+  "editUrl": "https://github.com/mocktomata/website/blob/main/docs/plugin.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "hide_title": true
+  },
+  "sidebar": "mocktomata",
+  "previous": {
+    "title": "configuration",
+    "permalink": "/website/configuration"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "unversionedId": "mockto",
+  "id": "mockto",
+  "title": "mockto",
+  "description": "mockto",
+  "source": "@site/docs/mockto.md",
+  "sourceDirName": ".",
+  "slug": "/mockto",
+  "permalink": "/website/mockto",
+  "draft": false,
+  "editUrl": "https://github.com/mocktomata/website/blob/main/docs/mockto.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "hide_title": true
+  },
+  "sidebar": "mocktomata",
+  "previous": {
+    "title": "setup",
+    "permalink": "/website/setup"
+  },
+  "next": {
+    "title": "komondor",
+    "permalink": "/website/komondor"
+  }
+}

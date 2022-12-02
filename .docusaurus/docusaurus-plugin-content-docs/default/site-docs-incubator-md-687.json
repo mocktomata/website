@@ -1,0 +1,26 @@
+{
+  "unversionedId": "incubator",
+  "id": "incubator",
+  "title": "incubator",
+  "description": "incubator",
+  "source": "@site/docs/incubator.md",
+  "sourceDirName": ".",
+  "slug": "/incubator",
+  "permalink": "/website/incubator",
+  "draft": false,
+  "editUrl": "https://github.com/mocktomata/website/blob/main/docs/incubator.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "hide_title": true
+  },
+  "sidebar": "mocktomata",
+  "previous": {
+    "title": "zucchini",
+    "permalink": "/website/zucchini"
+  },
+  "next": {
+    "title": "Spec",
+    "permalink": "/website/spec"
+  }
+}

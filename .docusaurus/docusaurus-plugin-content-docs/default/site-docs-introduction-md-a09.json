@@ -1,0 +1,23 @@
+{
+  "unversionedId": "introduction",
+  "id": "introduction",
+  "title": "Introduction",
+  "description": "Welcome to [mocktomata], a behavior simulation system.",
+  "source": "@site/docs/introduction.md",
+  "sourceDirName": ".",
+  "slug": "/",
+  "permalink": "/website/",
+  "draft": false,
+  "editUrl": "https://github.com/mocktomata/website/blob/main/docs/introduction.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Introduction",
+    "slug": "/"
+  },
+  "sidebar": "mocktomata",
+  "next": {
+    "title": "setup",
+    "permalink": "/website/setup"
+  }
+}

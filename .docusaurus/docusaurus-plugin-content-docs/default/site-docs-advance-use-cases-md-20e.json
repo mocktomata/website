@@ -1,0 +1,15 @@
+{
+  "unversionedId": "advance-use-cases",
+  "id": "advance-use-cases",
+  "title": "Advance Use Cases",
+  "description": "Besides using mocktomata during tests,",
+  "source": "@site/docs/advance-use-cases.md",
+  "sourceDirName": ".",
+  "slug": "/advance-use-cases",
+  "permalink": "/website/advance-use-cases",
+  "draft": false,
+  "editUrl": "https://github.com/mocktomata/website/docs/advance-use-cases.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}
