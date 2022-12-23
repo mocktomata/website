@@ -84,12 +84,12 @@ I will run the [Spec] in [auto mode][specmode].
 
 This behavior can be changed through [configuration].
 
-There are 3 variants of this call:
+There are 4 variants of this call:
 
-> `mockto.live(...)`
-> `mockto.save(...)`
-> `mockto.simulate(...)`
-> `mockto.mock(...)`
+- `mockto.live(...)`
+- `mockto.save(...)`
+- `mockto.simulate(...)`
+- `mockto.mock(...)`
 
 They run the [Spec] in those [mode][specmode] respectively.
 The [configuration] will not change the behavior if I am called this way.
