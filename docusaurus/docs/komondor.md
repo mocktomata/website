@@ -8,7 +8,7 @@ Hi, This is [`komondor`][komondor].
 
 I used to be a guard dog. <img src="/website/img/komondor.jpg" alt="komondor" width="20"/>
 
-But nowadays, I'm one of the four automata in the [mocktomata] family.
+But nowadays, I'm one of the four mocktomata in the [mocktomata] family.
 
 If you find my name is too long, you can also call me `kd`.
 
@@ -60,7 +60,7 @@ My API look like this:
 > `komondor(specName, specOptions?): spec`
 
 [`specName`][specname] must be unique within one test file,
-and `specOptions` is a [`Spec.options`][spec].
+and `specOptions` is a [`Spec.Options`][spec-options].
 
 I returns a [`spec()`][spec] function,
 which is also an object holding the other functions and properties:
@@ -75,11 +75,12 @@ I will run the [Spec] in [auto mode][specmode].
 
 This behavior can be changed through [configuration].
 
-There are 3 variants of this call:
+There are 4 variants of this call:
 
 > `komondor.live(...)`
 > `komondor.save(...)`
 > `komondor.simulate(...)`
+> `komondor.mock(...)`
 
 They run the [Spec] in those [mode][specmode] respectively.
 The [configuration] will not change the behavior if I am called this way.
@@ -148,6 +149,7 @@ When the time is right, call [`spec.done()`][done] to save the record.
 [reporter]: ./spec.md#reporter
 [spec-subject]: ./spec.md#what-can-be-a-spec-subject
 [spec]: ./spec.md#spec
+[spec-options]: ./spec.md#spec-options
 [Spec]: ./spec.md#what-is-spec
 [specmode]: ./spec.md#specmode
 [specname]: ./spec.md#uniqueness-of-specname

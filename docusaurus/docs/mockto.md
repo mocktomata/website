@@ -67,7 +67,7 @@ Let's take a look at my main API in detail:
 This is the common way to utilize me.
 
 [`specName`][specname] must be unique within one test file,
-and `specOptions` is a [`Spec.options`][spec].
+and `specOptions` is a [`Spec.Options`][spec-options].
 
 The `handler` is where you use the [`spec()`][spec] to write your test.
 
@@ -89,6 +89,7 @@ There are 3 variants of this call:
 > `mockto.live(...)`
 > `mockto.save(...)`
 > `mockto.simulate(...)`
+> `mockto.mock(...)`
 
 They run the [Spec] in those [mode][specmode] respectively.
 The [configuration] will not change the behavior if I am called this way.
@@ -162,6 +163,7 @@ Refer to [`configuration tips and tricks`](./configuration.md#tips-and-tricks) s
 [reporter]: ./spec.md#reporter
 [spec-subject]: ./spec.md#what-can-be-a-spec-subject
 [spec]: ./spec.md#spec
+[spec-options]: ./spec.md#spec-options
 [Spec]: ./spec.md#what-is-spec
 [specmode]: ./spec.md#specmode
 [specname]: ./spec.md#uniqueness-of-specname

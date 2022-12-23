@@ -63,21 +63,28 @@ so you can inspect it if you wanted to.
 
 [`spec()`](#spec) function is the function to specify the [spec subject][spec-subject].
 
-It has two signatures, depends on which mocktomata you get it from:
-
 ```ts
-// mockto
-// zucchini
-// incubator
-function spec(subject): Promise<subject>
-
-// komondor
 function spec(subject, options?): Promise<subject>
 ```
 
 Where the return promise contains the "speced" subject which you can use in place of `subject`.
 
-`options` is a `Spec.Options`. It contains 3 properties:
+You can specify a `mock` using the `options`:
+
+```ts
+spec(subject, { mock: mockSubject })
+```
+
+When running in `mock` mode (e.g. `mockto.mock(...)`),
+the `mockSubject` will be used instead of the `subject`.
+In other modes, the `mockSubject` will be ignored.
+
+This is useful to write a test with a mock subject,
+while the actual subject/remote system is not ready yet.
+
+## `Spec.Options`
+
+`Spec.Options` is used by the `mocktomata` to configure the spec. It contains 3 properties:
 
 - `timeout`: How long will the spec wait before consider the subject failed to return. (default to `3000` ms)
 - `logLevel`: Log level for logging the behavior (default to `logLevels.info`)
@@ -87,6 +94,7 @@ Here is how do specify the `options` for other mocktomata:
 
 ```ts
 mockto(specName, options?, handler)
+komondor(specName, options?)
 scenario(specName, options?) // zucchini
 incubator(specName, options?, handler)
 ```

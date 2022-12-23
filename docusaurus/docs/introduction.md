@@ -48,7 +48,7 @@ test('get friends', async () => {
 
 ```
 
-In [mocktomata], there are 4 mocktomaton you can use:
+In [mocktomata], there are 4 mocktomata you can use:
 
 - [mockto]: myself, good at simple testing
 - [komondor]: a general, more versatile mocktomaton that can do more than testing

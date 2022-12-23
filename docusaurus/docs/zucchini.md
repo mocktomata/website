@@ -92,7 +92,7 @@ Its signature is:
 > `scenario(specName, specOptions): { ... }`
 
 [`specName`][specname] must be unique within one test file,
-and `specOptions` is a [`Spec.options`][spec], just like in [`mockto`](./mockto.md) and [`komondor`](./komondor.md).
+and `specOptions` is a [`Spec.Options`][spec-options], just like in [`mockto`](./mockto.md) and [`komondor`](./komondor.md).
 
 The value it returns is what make it special:
 
@@ -231,5 +231,6 @@ For more details, you can take a look at [cucumber parameter type][cucumber-para
 [maskvalue]: ./spec.md#maskvalue
 [spec-subject]: ./spec.md#what-can-be-a-spec-subject
 [spec]: ./spec.md
+[spec-options]: ./spec.md#spec-options
 [specmode]: ./spec.md#specmode
 [specrecord]: ./spec.md#specrecord
