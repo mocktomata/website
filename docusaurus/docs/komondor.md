@@ -77,10 +77,10 @@ This behavior can be changed through [configuration].
 
 There are 4 variants of this call:
 
-> `komondor.live(...)`
-> `komondor.save(...)`
-> `komondor.simulate(...)`
-> `komondor.mock(...)`
+- `komondor.live(...)`
+- `komondor.save(...)`
+- `komondor.simulate(...)`
+- `komondor.mock(...)`
 
 They run the [Spec] in those [mode][specmode] respectively.
 The [configuration] will not change the behavior if I am called this way.
