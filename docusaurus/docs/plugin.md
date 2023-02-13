@@ -22,9 +22,10 @@ To make sure we are clear about what are we referring to, consider this:
 > A plugin package exports a plugin module which register one or more plugins.
 
 For example,
-you need to write a plugin for `node-fetch` (you don't have to, but we use it as an example).
+you need to write a plugin for `node-fetch`
+(you don't have to, we just use it as an example).
 
-You will create package like `mocktomata-plugin-node-fetch`,
+You will create a package like `mocktomata-plugin-node-fetch`,
 which expose a [`PluginModule`](#pluginmodule),
 which register a `node-fetch` plugin:
 

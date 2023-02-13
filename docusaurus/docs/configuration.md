@@ -42,6 +42,8 @@ here is what can be configured and their default values:
 
 ```js
 {
+  // Default: `es2015`
+  "ecmaVersion": "<es2015 | es2020>",
   // Overrides the calls with `auto` mode to a specific mode.
   "overrideMode": "<live | save | simulate>",
   // Filter the calls to override using file path.
@@ -78,6 +80,7 @@ or used during test startup or test runner plugins (e.g. jest watch plugins) so 
 import { config } from 'mocktomata'
 
 config({
+  ecmaVersion: "<es2015 | es2020>",
   overrideMode: "<live | save | simulate>",
   filePathFilter: "<regex>",
   specNameFilter: "<regex>",
