@@ -27,6 +27,7 @@ const sidebars = {
     Details: [
       'spec',
       'configuration',
+      'special-handling',
       'plugin'
     ]
   }
