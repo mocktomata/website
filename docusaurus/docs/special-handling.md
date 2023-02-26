@@ -21,7 +21,7 @@ class Class {}
 class SubClass extends Class {}
 
 function create() {
-  return new SubClass
+  return new SubClass()
 }
 
 mockto('your test', (specName, spec) => {
