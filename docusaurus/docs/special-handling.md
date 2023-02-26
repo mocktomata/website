@@ -30,6 +30,7 @@ mockto('your test', (specName, spec) => {
     const s = await spec(create)
     const r = s()
     expect(r).toBeInstanceOf(SubClass) // <-- and this will work
+    expect(r).toBeInstanceOf(Class) // <-- and this will work
     await spec.done()
   })
 })
