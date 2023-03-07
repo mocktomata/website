@@ -33,7 +33,7 @@ It calls a remote service to get a list of friends based on the input.
 The `axios` instance is passed in for easy mocking,
 a common practice for functional styled programming.
 
-When you are not using [mocktomata], typically you will mock `axiso` in your test.
+When you are not using [mocktomata], typically you will mock `axios` in your test.
 Here is an example using `jest.fn()`:
 
 ```ts
