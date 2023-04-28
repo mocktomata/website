@@ -188,6 +188,9 @@ The `RegExp` will be `.exec()` against the values,
 so if the sensitive information can occurs multiple times in the same string,
 use the `/g` global flag to make sure all occurrences are masked:
 
+Note that the value is checked against each log message and each metadata within the record.
+So you should avoid using start and end anchor (`^` and `$`) as there will be extra text around subject.
+
 ```ts
 maskValue(/some-secret/g)
 maskValue(/Bearer \.*/g)
