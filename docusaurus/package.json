@@ -44,7 +44,7 @@
     "@types/node": "^18.11.9",
     "typescript": "^5.0.0"
   },
-  "packageManager": "pnpm@10.19.0",
+  "packageManager": "pnpm@10.20.0",
   "engines": {
     "node": ">=16.14"
   }
