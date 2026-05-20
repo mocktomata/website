@@ -1,2 +1,6 @@
 packages:
   - docusaurus
+allowBuilds:
+  core-js: true
+  core-js-pure: true
+  turbo: true
