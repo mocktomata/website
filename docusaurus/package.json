@@ -42,7 +42,7 @@
     "@docusaurus/types": "^3.0.0",
     "@tsconfig/docusaurus": "^2.0.0",
     "@types/node": "^18.11.9",
-    "typescript": "^6.0.0"
+    "typescript": "^7.0.0"
   },
   "packageManager": "pnpm@11.12.0",
   "engines": {
