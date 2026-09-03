@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@docusaurus/core": "3.10.2",
-    "@docusaurus/plugin-client-redirects": "^3.0.0",
+    "@docusaurus/plugin-client-redirects": "3.10.2",
     "@docusaurus/preset-classic": "3.10.2",
     "@mdx-js/react": "^3.0.0",
     "clsx": "^2.0.0",
@@ -38,14 +38,13 @@
   },
   "devDependencies": {
     "@docusaurus/module-type-aliases": "3.10.2",
-    "@docusaurus/theme-classic": "^3.0.0",
-    "@docusaurus/types": "^3.0.0",
-    "@tsconfig/docusaurus": "^2.0.0",
-    "@types/node": "^18.11.9",
+    "@docusaurus/theme-classic": "3.10.2",
+    "@docusaurus/types": "3.10.2",
+    "@types/node": "^24.0.0",
     "typescript": "^7.0.0"
   },
   "packageManager": "pnpm@11.25.0",
   "engines": {
-    "node": ">=16.14"
+    "node": ">=22.13"
   }
 }

@@ -1,8 +1,10 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const { themes } = require('prism-react-renderer')
+
+const lightCodeTheme = themes.github
+const darkCodeTheme = themes.dracula
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -36,7 +38,7 @@ const config = {
           sidebarPath: require.resolve('./sidebars.js'),
           // Remove this to remove the "edit this page" links.
           editUrl: 'https://github.com/mocktomata/website/blob/main',
-          routeBasePath: '/'
+          routeBasePath: '/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -46,13 +48,12 @@ const config = {
   ],
   plugins: [
     [
-      "@docusaurus/plugin-client-redirects",
+      '@docusaurus/plugin-client-redirects',
       {
-        createRedirects: function (existingPath) {
-          return ["/docs" + existingPath]
-        }
-      }
-    ]
+        /** @param {string} existingPath */
+        createRedirects: (existingPath) => ['/docs' + existingPath],
+      },
+    ],
   ],
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
@@ -68,7 +69,7 @@ const config = {
             type: 'doc',
             docId: 'introduction',
             label: 'Documentation',
-            position: 'right'
+            position: 'right',
           },
           {
             href: 'https://github.com/mocktomata/mocktomata',
@@ -85,8 +86,8 @@ const config = {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
-      colorMode: { defaultMode: 'dark' }
+      colorMode: { defaultMode: 'dark' },
     }),
-};
+}
 
-module.exports = config;
+module.exports = config

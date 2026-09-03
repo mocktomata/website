@@ -1,0 +1,21 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.5.11/schema.json",
+  "extends": ["@repobuddy/biome/recommended"],
+  "files": {
+    // Generated output, vendored docusaurus artwork, and prose are not ours to format.
+    "includes": ["!**/build", "!**/.docusaurus", "!**/.turbo", "!**/static", "!**/*.md", "!.agents"]
+  },
+  "formatter": {
+    // Match .editorconfig, which this repo already follows.
+    "indentStyle": "space",
+    "indentWidth": 2
+  },
+  "linter": {
+    "rules": {
+      "style": {
+        // Biome ships this at "info", which does not fail `biome check`.
+        "useNodejsImportProtocol": "error"
+      }
+    }
+  }
+}
