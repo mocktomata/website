@@ -5,14 +5,44 @@ on:
     branches:
       - main
       - beta
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
+  # Job id must stay `code`: `code / all-checks` is the required status check.
   code:
     uses: mocktomata/.github/.github/workflows/pnpm-verify.yml@main
     with:
       os: '["ubuntu-latest"]'
+
+  # Deploys the built site to the gh-pages branch, which is what
+  # https://mocktomata.github.io/website/ serves.
+  #
+  # This used to call the shared mocktomata/.github pnpm-docs.yml workflow.
+  # That workflow hard-pins Node 16, and the pinned pnpm needs Node >= 22.13,
+  # so every deploy since has died before running the build. It is inlined
+  # here so this repo controls the runtime it deploys with.
   docs:
-    uses: mocktomata/.github/.github/workflows/pnpm-docs.yml@main
     needs: code
-    secrets: inherit
-    with:
-      publish-dir: ./docusaurus/build
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v6
+        with:
+          node-version: lts/*
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build:doc
+
+      - name: Publish to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docusaurus/build
