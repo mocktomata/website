@@ -1,8 +1,14 @@
 packages:
   - docusaurus
+
 allowBuilds:
   core-js: true
   core-js-pure: true
+  fsevents: true
   turbo: true
 
-  fsevents: true
+# Dependency soak. These only enforce from here, not from .npmrc:
+# set in .npmrc, pnpm silently *excludes* too-young packages instead of
+# failing. `Strict` is what turns exclusion into an error.
+minimumReleaseAge: 1440
+minimumReleaseAgeStrict: true
