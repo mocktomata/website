@@ -1,7 +1,23 @@
 {
-  // This file is not used in compilation. It is here just for a nice editor experience.
-  "extends": "@tsconfig/docusaurus/tsconfig.json",
+  // This file is not used in compilation. It is here just for a nice editor
+  // experience, and to give `pnpm typecheck` something real to check.
+  //
+  // Inlined from @tsconfig/docusaurus, minus the `baseUrl` that TypeScript 7
+  // removed; `paths` is resolved relative to this file instead.
   "compilerOptions": {
-    "baseUrl": "."
-  }
+    "allowJs": true,
+    "esModuleInterop": true,
+    "jsx": "react",
+    "lib": ["DOM"],
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "noEmit": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "types": ["node", "@docusaurus/module-type-aliases", "@docusaurus/theme-classic"],
+    "paths": {
+      "@site/*": ["./*"]
+    }
+  },
+  "include": ["src", "docusaurus.config.js", "sidebars.js"]
 }

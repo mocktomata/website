@@ -1,51 +1,16 @@
 {
-  "$schema": "https://turborepo.org/schema.json",
-  "pipeline": {
-    "build": {
-      "dependsOn": [
-        "^build"
-      ]
-    },
+  "$schema": "https://turborepo.com/schema.json",
+  "tasks": {
     "build:doc": {
-      "dependsOn": [
-        "^build"
-      ]
+      "outputs": ["build/**", ".docusaurus/**"]
     },
-    "clean": {
+    "clear": {
       "cache": false
     },
-    "coverage": {
-      "dependsOn": [
-        "^build"
-      ]
+    "start": {
+      "cache": false,
+      "persistent": true
     },
-    "depcheck": {
-      "dependsOn": [
-        "build"
-      ]
-    },
-    "dev": {
-      "cache": false
-    },
-    "lint": {
-      "dependsOn": [
-        "^build"
-      ]
-    },
-    "size": {
-      "dependsOn": [
-        "build"
-      ]
-    },
-    "test": {
-      "dependsOn": [
-        "^build"
-      ]
-    },
-    "watch": {
-      "dependsOn": [
-        "^build"
-      ]
-    }
+    "typecheck": {}
   }
 }
