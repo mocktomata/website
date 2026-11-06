@@ -86,7 +86,7 @@ mockto('charge the cart total', (specName, spec) => {
 The result of `cartTotal()` reaches `api.charge()` as an ordinary argument.
 During simulation, it is compared with the [SpecRecord] under the usual rules,
 the same as any value you pass in yourself.
-The `argumentMatching` option and [`ignoreMismatch()`](#ignoremismatch) apply to it.
+The [`argumentMatching`](#argumentmatching) option and [`ignoreMismatch()`](#ignoremismatch) apply to it.
 
 So if a change to `cartTotal()` makes it return a different number,
 the simulation throws `ActionMismatch`.
@@ -137,11 +137,12 @@ while the actual subject/remote system is not ready yet.
 
 ## `Spec.Options`
 
-`Spec.Options` is used by the `mocktomata` to configure the spec. It contains 3 properties:
+`Spec.Options` is used by the `mocktomata` to configure the spec. Its properties include:
 
 - `timeout`: How long will the spec wait before consider the subject failed to return. (default to `3000` ms)
 - `logLevel`: Log level for logging the behavior (default to `logLevels.info`)
 - `emitLog`: When true, emit logs to console (default `false`)
+- `argumentMatching`: Which arguments are compared with the record during simulation (default `'behavior'`). See [`argumentMatching`](#argumentmatching).
 
 Here is how do specify the `options` for other mocktomata:
 
@@ -269,33 +270,167 @@ and yet the value is safe to be saved in your source control.
 
 ## `ignoreMismatch()`
 
-Sometimes the input you provide to the test may not be static.
-For example, random number, date time, or hostnames.
+Sometimes the input you provide to the test changes between runs.
+For example, a random number, the current time, or a hostname.
 
-In 7.0, reference values (string, object, array, function) are not validate for changes,
-i.e. even if you pass in a different string, the system will not fail it with `ActionMismatch` error.
-This is because we track the behavior, not and exact call, whenever possible.
+[`ignoreMismatch()`](#ignoremismatch) tells the [Spec] to accept such a value:
 
-This is a new concept and is subject to change if it does not work well.
+```ts
+function ignoreMismatch(value: unknown): void
+```
 
-On the other hand, primitive values such as number and boolean are validated.
+It accepts numbers, booleans, bigints, and strings.
+It does nothing with other values, such as objects, arrays, and `Date`.
 
-If you want to tell [`spec()`](#spec) that it should not care about the changes,
-you can use [`ignoreMismatch()`](#ignoremismatch) to ignore that specific value.
+Call it before calling [`spec()`](#spec).
+When the [Spec] is saved, the value is recorded as inert.
+During simulation, the value in its place is not compared,
+and the call returns the recorded result.
+The value is matched with `===`.
 
-The value is compared using strict equivalence. (i.e. `===`).
+Because the value is marked when the [Spec] is saved,
+adding [`ignoreMismatch()`](#ignoremismatch) to an existing test takes effect after you save the [Spec] again.
+
 For example:
 
 ```ts
-test('...', async () => {
-  const date = new Date()
+import { mockto } from 'mocktomata'
 
-  const spec = komondor('...')
-  spec.ignoreMismatch(date)
+mockto('get events since now', (specName, spec) => {
+  test(specName, async () => {
+    const since = Date.now()
+    spec.ignoreMismatch(since)
 
+    const s = await spec(getEvents)
+    const events = await s(since)
+
+    expect(events.length).toBeGreaterThan(0)
+    await spec.done()
+  })
+})
+```
+
+During simulation, `since` has a new value,
+but `s(since)` returns the events that were recorded.
+Without [`ignoreMismatch()`](#ignoremismatch),
+the new number does not match the record and the simulation throws `ActionMismatch`.
+
+Which values need [`ignoreMismatch()`](#ignoremismatch) depends on [`argumentMatching`](#argumentmatching).
+By default, string arguments are not compared,
+so a string passed to it only matters when `argumentMatching` is `'strings'`,
+or when the string is assigned to a property.
+
+## `argumentMatching`
+
+:::note
+
+`argumentMatching` is available from `mocktomata` 10.2.0.
+
+:::
+
+During simulation, [mocktomata] compares each call with the [SpecRecord].
+`argumentMatching` sets which arguments of function calls and `new` are compared with the recorded ones.
+
+There are 2 levels:
+
+- `'behavior'` (default): numbers, booleans, and bigints are compared.
+  Strings are not compared, so values such as paths, timestamps, and ids can change between runs.
+  This is because we track the behavior, not an exact call, whenever possible.
+- `'strings'`: string arguments at the top level of function calls and `new` are also compared.
+  Strings inside objects and arrays are not compared.
+
+For example, say the [SpecRecord] has the call `axios.get('/users/1')`,
+and the test now calls `axios.get('/users/2')`:
+
+- With `'behavior'`, the simulation passes and returns user 1 from the record.
+- With `'strings'`, the simulation throws `ActionMismatch`.
+
+With `'strings'`, a call such as `fn({ path: '/users/2' })` or `fn(['/users/2'])` still matches a record of `fn({ path: '/users/1' })` or `fn(['/users/1'])`,
+because the strings are inside an object or an array.
+
+`argumentMatching` covers the arguments of function calls and `new`.
+A string assigned to a property (e.g. `subject.url = '/users/2'`) is always compared, whatever the level.
+
+### Setting `argumentMatching`
+
+Set it for one [Spec] in its [`Spec.Options`](#specoptions):
+
+```ts
+mockto('get user', { argumentMatching: 'strings' }, (specName, spec) => {
   // ...
 })
 ```
+
+Set it for the whole project in `mocktomata.json`:
+
+```json
+{
+  "argumentMatching": "strings"
+}
+```
+
+It can also be set in the `mocktomata` section of your `package.json`, or with `config()`.
+See [Configuration](./configuration.md).
+
+When both are set, the value in [`Spec.Options`](#specoptions) wins.
+
+### Masked strings
+
+Before comparing, [mocktomata] masks both the new string and the recorded string with the [`maskValue()`](#maskvalue) criteria of the current run.
+Masked strings are compared in their masked form.
+
+So a secret that differs between runs, such as a CI token,
+still matches when the test calls [`maskValue()`](#maskvalue) with it:
+
+```ts
+mockto('get user', { argumentMatching: 'strings' }, (specName, spec) => {
+  test(specName, async () => {
+    const token = process.env.API_TOKEN as string
+    spec.maskValue(token)
+
+    const s = await spec(getUser)
+    const user = await s('/users/1', token)
+
+    expect(user.name).toBe('miku')
+    await spec.done()
+  })
+})
+```
+
+When the [Spec] is saved, the token is recorded as `[masked]`.
+During simulation, the token of that run is also masked to `[masked]`,
+so the two match even when the tokens differ.
+
+This also applies to a [`maskValue()`](#maskvalue) added after the [Spec] was saved.
+
+### `ActionMismatch`
+
+When an argument does not match, the simulation throws `ActionMismatch`.
+Its message names the `argumentMatching` level and the index of the argument.
+For strings, it also shows the expected and received values, in masked form,
+so secrets do not leak into logs:
+
+```sh
+Argument 0 does not match the record (argumentMatching: 'strings').
+  expected: "/users/1"
+  received: "/users/2"
+To accept a value that changes between runs, pass it to spec.ignoreMismatch() and save the spec again.
+A string can also be masked with spec.maskValue().
+```
+
+The same details are available in the `argument` property of the error:
+
+```ts
+{
+  argumentMatching: 'strings',
+  index: 0,
+  strings: { expected: '/users/1', received: '/users/2' }
+}
+```
+
+If the string is expected to change between runs,
+pass it to [`ignoreMismatch()`](#ignoremismatch),
+or mask it with [`maskValue()`](#maskvalue).
 
 [Spec]: #what-is-spec
 [specName]: #uniqueness-of-specName
