@@ -25,8 +25,9 @@ but we will save that for later.
 
 [mocktomata] will save the `SpecRecord` under the `.mocktomata` folder at the root of the package.
 
-These files should be added in your source control.
-For git, you can do that by adding that folder to your `.gitignore` file.
+Commit the `.mocktomata` folder to source control.
+Do not add it to your `.gitignore` file.
+Without the records, tests in CI or on another machine cannot simulate and make real calls instead.
 
 ## Configuration
 
