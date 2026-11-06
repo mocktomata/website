@@ -50,6 +50,59 @@ or even libraries or code from another team that might not be stable.
 In essence, it can be anything that is external, suspect to chanages,
 or anything unstable.
 
+## Keeping a dependency live
+
+You do not have to pass every dependency of a test to [`spec()`](#spec).
+A test can mix [spec subjects][spec-subject] with plain dependencies.
+A dependency that is not passed to [`spec()`](#spec) is not recorded,
+so it runs for real in every [SpecMode](#specmode).
+
+This fits a dependency that is local and deterministic,
+such as a pure function or an in-memory database,
+next to a remote one that you want to record and replay.
+
+```ts
+import { mockto } from 'mocktomata'
+import { cartTotal } from './cart' // local and deterministic: kept live
+import { paymentApi } from './paymentApi' // remote: recorded and replayed
+
+mockto('charge the cart total', (specName, spec) => {
+  test(specName, async () => {
+    const api = await spec(paymentApi)
+
+    const total = cartTotal([
+      { price: 3, quantity: 2 },
+      { price: 5, quantity: 1 },
+    ])
+    const receipt = await api.charge('order-1', total)
+
+    expect(receipt.amount).toBe(11)
+    await spec.done()
+  })
+})
+```
+
+`cartTotal()` runs in every mode, and `paymentApi` is recorded once and then simulated.
+The result of `cartTotal()` reaches `api.charge()` as an ordinary argument.
+During simulation, it is compared with the [SpecRecord] under the usual rules,
+the same as any value you pass in yourself.
+The `argumentMatching` option and [`ignoreMismatch()`](#ignoremismatch) apply to it.
+
+So if a change to `cartTotal()` makes it return a different number,
+the simulation throws `ActionMismatch`.
+Save the [Spec] again when the new value is intended.
+
+Keep these in mind:
+
+- If the live dependency produces a value that changes between runs,
+  such as a random number, a timestamp, or a generated id,
+  and that value is passed to a spec'd call,
+  the simulation can throw `ActionMismatch`.
+  Pass the value to [`ignoreMismatch()`](#ignoremismatch),
+  or pass that dependency to [`spec()`](#spec) as well.
+- If the live dependency needs the network,
+  the test needs the network in every mode, including in CI.
+
 ## `SpecRecord`
 
 [SpecRecord](#specrecord) is the record of a [Spec] that we saved.
