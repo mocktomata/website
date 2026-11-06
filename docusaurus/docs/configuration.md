@@ -55,9 +55,15 @@ here is what can be configured and their default values:
   // log level inside `mocktomata`. Default: "info"
   "logLevel": "error" | "warn" | "info" | "debug" | "trace" | "all",
   // should the log emit to console. Default: false
-  "emitLog": boolean
+  "emitLog": boolean,
+  // Which arguments are compared with the record during simulation. Default: "behavior"
+  // Available from mocktomata 10.2.0.
+  "argumentMatching": "<behavior | strings>"
 }
 ```
+
+See [`argumentMatching`](./spec.md#argumentmatching) for what each level compares.
+The `argumentMatching` option of a spec overrides this value.
 
 ## Environment Variables
 
@@ -87,7 +93,8 @@ config({
   plugins: ["plugin-a"],
   // currently only debug level is available
   logLevel: 'debug',
-  emitLog: true
+  emitLog: true,
+  argumentMatching: "<behavior | strings>"
 })
 ```
 
