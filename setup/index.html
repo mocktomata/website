@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.10.2">
 <title data-rh="true">setup | mocktomata</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://mocktomata.github.io/website/setup"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="setup | mocktomata"><meta data-rh="true" name="description" content="Install"><meta data-rh="true" property="og:description" content="Install"><link data-rh="true" rel="icon" href="/website/img/mocktomata.ico"><link data-rh="true" rel="canonical" href="https://mocktomata.github.io/website/setup"><link data-rh="true" rel="alternate" href="https://mocktomata.github.io/website/setup" hreflang="en"><link data-rh="true" rel="alternate" href="https://mocktomata.github.io/website/setup" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"setup","item":"https://mocktomata.github.io/website/setup"}]}</script><link rel="stylesheet" href="/website/assets/css/styles.4cbc06aa.css">
-<script src="/website/assets/js/runtime~main.406913cd.js" defer="defer"></script>
+<script src="/website/assets/js/runtime~main.a86373f9.js" defer="defer"></script>
 <script src="/website/assets/js/main.c30d1292.js" defer="defer"></script>
 </head>
 <body>
@@ -19,8 +19,9 @@
 but we will save that for later.</p>
 <h2 class="anchor anchorTargetStickyNavbar_D5gP" id="repository-setup">Repository Setup<a href="#repository-setup" class="hash-link" aria-label="Direct link to Repository Setup" title="Direct link to Repository Setup" translate="no">​</a></h2>
 <p><a href="https://github.com/mocktomata/mocktomata/blob/master/packages/mocktomata" target="_blank" rel="noopener noreferrer" class="">mocktomata</a> will save the <code>SpecRecord</code> under the <code>.mocktomata</code> folder at the root of the package.</p>
-<p>These files should be added in your source control.
-For git, you can do that by adding that folder to your <code>.gitignore</code> file.</p>
+<p>Commit the <code>.mocktomata</code> folder to source control.
+Do not add it to your <code>.gitignore</code> file.
+Without the records, tests in CI or on another machine cannot simulate and make real calls instead.</p>
 <h2 class="anchor anchorTargetStickyNavbar_D5gP" id="configuration">Configuration<a href="#configuration" class="hash-link" aria-label="Direct link to Configuration" title="Direct link to Configuration" translate="no">​</a></h2>
 <p>In most cases, <a href="https://github.com/mocktomata/mocktomata/blob/master/packages/mocktomata" target="_blank" rel="noopener noreferrer" class="">mocktomata</a> works out of the box without any configuration.
 But there are ways you can customize it too.</p>
